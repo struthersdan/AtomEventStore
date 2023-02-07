@@ -14,3 +14,10 @@ NuGetPackages/
 *.camrec
 *.camproj
 *.wav
+*.manifest
+*.v2
+*.vsidx
+*.lock
+*.testlog
+*.1
+packages

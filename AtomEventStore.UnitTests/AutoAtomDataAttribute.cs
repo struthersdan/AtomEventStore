@@ -1,7 +1,4 @@
-﻿using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.Xunit;
-
-namespace Grean.AtomEventStore.UnitTests
+﻿namespace Grean.AtomEventStore.UnitTests
 {
     public class AutoAtomDataAttribute : AutoDataAttribute
     {

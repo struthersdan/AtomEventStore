@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 
@@ -30,10 +28,7 @@ namespace Grean.AtomEventStore
         /// </exception>
         public AtomAuthor(string name)
         {
-            if (name == null)
-                throw new ArgumentNullException("name");
-
-            this.name = name;
+            this.name = name ?? throw new ArgumentNullException("name");
         }
 
         /// <summary>

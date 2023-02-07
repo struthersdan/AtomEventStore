@@ -1,13 +1,6 @@
-﻿using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.Idioms;
-using Ploeh.AutoFixture.Xunit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Xunit.Extensions;
 
 namespace Grean.AtomEventStore.UnitTests
 {

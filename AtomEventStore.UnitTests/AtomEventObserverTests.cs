@@ -1,14 +1,6 @@
-﻿using Ploeh.AutoFixture.Idioms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit.Extensions;
-using Grean.AtomEventStore;
-using Ploeh.AutoFixture.Xunit;
-using Xunit;
-using Ploeh.AutoFixture;
 using Moq;
 
 namespace Grean.AtomEventStore.UnitTests
@@ -27,9 +19,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteCorrectlyStoresFeed(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             XmlAttributedTestEventX expectedEvent)
@@ -52,9 +44,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteFirstEventWritesPageBeforeIndex(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]SpyAtomEventStore spyStore,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]SpyAtomEventStore spyStore,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             XmlAttributedTestEventX @event)
@@ -71,8 +63,8 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteFirstEventFailsIfWritingIndexFails(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
             [Frozen]Mock<IAtomEventStorage> storeStub,
             AtomEventsInMemory innerStorage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
@@ -104,9 +96,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteTwoEventsOnlyWritesIndexOnce(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]SpyAtomEventStore spyStore,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]SpyAtomEventStore spyStore,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -127,9 +119,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WritePageSizeEventsStoresAllEntriesInFirstPage(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -156,9 +148,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteMoreThanPageSizeEventsOnlyStoresOverflowingEvent(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -186,9 +178,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteMoreThanPageSizeEventsWritesInCorrectOrder(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]SpyAtomEventStore spyStore,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]SpyAtomEventStore spyStore,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -217,9 +209,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteMoreThanPageSizeEventsOnlyWritesIndexTwice(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]SpyAtomEventStore spyStore,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]SpyAtomEventStore spyStore,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -252,8 +244,8 @@ namespace Grean.AtomEventStore.UnitTests
             int initialPageCount,
             int secondaryPageCount,
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
             [Frozen]Mock<IAtomEventStorage> storeStub,
             AtomEventsInMemory innerStorage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
@@ -318,9 +310,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteCorrectlyStoresLastLinkOnIndex(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             XmlAttributedTestEventX expectedEvent)
@@ -343,9 +335,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteMoreThanPageSizeEventsCorrectlyUpdatesLastLink(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -372,9 +364,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteMultipeTimesMoreThanPageSizeCorrectlyStoresOverflowingEvents(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -402,9 +394,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteMoreThanTwicePageSizeCorrectlyStoresOverflowingEvent(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -433,9 +425,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteWritesEventToCorrectPageEvenIfLastLinkIsNotUpToDate(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -485,8 +477,8 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void AttemptToCorrecLastLinkDoesNotThrowOnFailure(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
             [Frozen]Mock<IAtomEventStorage> storeStub,
             AtomEventsInMemory innerStorage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
@@ -550,9 +542,9 @@ namespace Grean.AtomEventStore.UnitTests
         [InlineAutoAtomData(AtomEventWriteUsage.OnNext)]
         public void WriteMoreThanPageSizeEventsAddsNextPageWithPreviousLink(
             AtomEventWriteUsage usage,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             AtomEventWriterFactory<XmlAttributedTestEventX> writerFactory,
             AtomEventObserver<XmlAttributedTestEventX> sut,
             Generator<XmlAttributedTestEventX> eventGenerator)
@@ -636,14 +628,14 @@ namespace Grean.AtomEventStore.UnitTests
             AtomEventObserver<DataContractTestEventX> sut,
             Exception error)
         {
-            Assert.DoesNotThrow(() => sut.OnError(error));
+            sut.OnError(error);
         }
 
         [Theory, AutoAtomData]
         public void OnCompletedDoesNotThrow(
             AtomEventObserver<DataContractTestEventX> sut)
         {
-            Assert.DoesNotThrow(sut.OnCompleted);
+           sut.OnCompleted();
         }
     }
 

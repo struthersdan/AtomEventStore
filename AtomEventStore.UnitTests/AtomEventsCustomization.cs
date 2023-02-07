@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.AutoMoq;
-using Ploeh.AutoFixture.Kernel;
+using AutoFixture.AutoMoq;
+using AutoFixture.Kernel;
+
 
 namespace Grean.AtomEventStore.UnitTests
 {
@@ -42,7 +39,7 @@ namespace Grean.AtomEventStore.UnitTests
                     if (pi == null ||
                         pi.ParameterType != typeof(int) ||
                         pi.Name != "pageSize")
-                        return new NoSpecimen(request);
+                        return new NoSpecimen();
 
                     return this.r.Next(2, 17);
                 }
@@ -62,7 +59,7 @@ namespace Grean.AtomEventStore.UnitTests
                 {
                     var pi = request as ParameterInfo;
                     if (pi == null || pi.ParameterType != typeof(IContentSerializer))
-                        return new NoSpecimen(request);
+                        return new NoSpecimen();
 
 #pragma warning disable 618
                     if (pi.Member.ReflectedType == typeof(AtomEventStream<XmlAttributedTestEventX>))
@@ -73,7 +70,7 @@ namespace Grean.AtomEventStore.UnitTests
                         return context.Resolve(typeof(DataContractContentSerializer));
 #pragma warning restore 618
 
-                    return new NoSpecimen(request);
+                    return new NoSpecimen();
                 }
             }
         }
@@ -91,7 +88,7 @@ namespace Grean.AtomEventStore.UnitTests
                 {
                     var pi = request as ParameterInfo;
                     if (pi == null || pi.ParameterType != typeof(ITypeResolver))
-                        return new NoSpecimen(request);
+                        return new NoSpecimen();
 
                     if (pi.Member.ReflectedType == typeof(XmlContentSerializer))
                         return new XmlContentTypeResolver();
@@ -99,7 +96,7 @@ namespace Grean.AtomEventStore.UnitTests
                     if (pi.Member.ReflectedType == typeof(DataContractContentSerializer))
                         return new DataContractTypeResolver();
 
-                    return new NoSpecimen(request);
+                    return new NoSpecimen();
                 }
 
                 private class XmlContentTypeResolver : ITypeResolver
@@ -185,13 +182,13 @@ namespace Grean.AtomEventStore.UnitTests
 
                     var type = request as Type;
                     if (type == null)
-                        return new NoSpecimen(request);
+                        return new NoSpecimen();
 
                     var args = type.GetGenericArguments();
                     if (args.Length != 1 ||
                         type.GetGenericTypeDefinition() !=
                             typeof(IReadOnlyCollection<>))
-                        return new NoSpecimen(request);
+                        return new NoSpecimen();
 
                     var relayedType =
                         typeof(ICollection<>).MakeGenericType(args);

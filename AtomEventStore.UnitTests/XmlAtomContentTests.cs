@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Grean.AtomEventStore;
-using Ploeh.AutoFixture.Xunit;
-using Xunit;
-using Xunit.Extensions;
-using Ploeh.SemanticComparison.Fluent;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;

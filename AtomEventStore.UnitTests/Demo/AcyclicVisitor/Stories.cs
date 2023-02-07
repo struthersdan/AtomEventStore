@@ -1,10 +1,7 @@
-﻿using Ploeh.SemanticComparison;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Xunit;
 
 namespace Grean.AtomEventStore.UnitTests.Demo.AcyclicVisitor
 {

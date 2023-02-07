@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Xunit.Extensions;
-using Grean.AtomEventStore;
-using Ploeh.AutoFixture.Xunit;
-using Xunit;
-using Ploeh.SemanticComparison.Fluent;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
-using Ploeh.AutoFixture.Idioms;
 
 namespace Grean.AtomEventStore.UnitTests
 {

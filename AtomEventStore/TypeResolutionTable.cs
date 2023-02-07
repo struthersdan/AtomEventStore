@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Grean.AtomEventStore
 {
@@ -50,10 +48,7 @@ namespace Grean.AtomEventStore
         /// </exception>
         public TypeResolutionTable(params TypeResolutionEntry[] entries)
         {
-            if (entries == null)
-                throw new ArgumentNullException("entries");
-
-            this.entries = entries;
+            this.entries = entries ?? throw new ArgumentNullException(nameof(entries));
         }
 
         /// <summary>

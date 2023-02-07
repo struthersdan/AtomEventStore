@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Xunit.Extensions;
-using Grean.AtomEventStore;
-using Ploeh.AutoFixture.Xunit;
-using Ploeh.SemanticComparison.Fluent;
 using System.Xml;
 using System.Xml.Linq;
-using Ploeh.AutoFixture;
 using System.IO;
-using Moq;
 
 namespace Grean.AtomEventStore.UnitTests
 {

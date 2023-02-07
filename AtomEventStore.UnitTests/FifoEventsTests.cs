@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Xunit.Extensions;
-using Grean.AtomEventStore;
-using Ploeh.AutoFixture.Idioms;
-using Ploeh.AutoFixture.Xunit;
-using Ploeh.AutoFixture;
 
 namespace Grean.AtomEventStore.UnitTests
 {
@@ -29,7 +20,7 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void SutIsInitiallyEmpty(
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             FifoEvents<XmlAttributedTestEventX> sut)
         {
             Assert.False(sut.Any(), "Intial event stream should be empty.");
@@ -38,9 +29,9 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void SutYieldsCorrectEvents(
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             [Frozen]UuidIri dummyId,
             AtomEventObserver<XmlAttributedTestEventX> writer,
             FifoEvents<XmlAttributedTestEventX> sut,
@@ -58,9 +49,9 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void SutYieldsPagedEvents(
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             [Frozen]UuidIri dummyId,
             AtomEventObserver<XmlAttributedTestEventX> writer,
             FifoEvents<XmlAttributedTestEventX> sut,
@@ -80,9 +71,9 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void SutCanAppendAndYieldPolymorphicEvents(
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             [Frozen]UuidIri dummyId,
             AtomEventObserver<IXmlAttributedTestEvent> writer,
             FifoEvents<IXmlAttributedTestEvent> sut,
@@ -98,9 +89,9 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void ReverseYieldsCorrectEvents(
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             [Frozen]UuidIri dummyId,
             AtomEventObserver<XmlAttributedTestEventX> writer,
             FifoEvents<XmlAttributedTestEventX> sut,

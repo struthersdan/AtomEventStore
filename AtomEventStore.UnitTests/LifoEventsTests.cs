@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Xunit.Extensions;
-using Ploeh.AutoFixture.Idioms;
-using Ploeh.AutoFixture.Xunit;
-using Ploeh.AutoFixture;
 
 namespace Grean.AtomEventStore.UnitTests
 {
@@ -28,7 +20,7 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void SutIsInitiallyEmpty(
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             LifoEvents<XmlAttributedTestEventX> sut)
         {
             Assert.False(sut.Any(), "Intial event stream should be empty.");
@@ -37,9 +29,9 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void SutYieldsCorrectEvents(
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             [Frozen]UuidIri dummyId,
             AtomEventObserver<XmlAttributedTestEventX> writer,
             LifoEvents<XmlAttributedTestEventX> sut,
@@ -60,9 +52,9 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void SutYieldsPagedEvents(
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             [Frozen]UuidIri dummyId,
             AtomEventObserver<XmlAttributedTestEventX> writer,
             LifoEvents<XmlAttributedTestEventX> sut,
@@ -84,9 +76,9 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void SutCanAppendAndYieldPolymorphicEvents(
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             [Frozen]UuidIri dummyId,
             AtomEventObserver<IXmlAttributedTestEvent> writer,
             LifoEvents<IXmlAttributedTestEvent> sut,
@@ -102,9 +94,9 @@ namespace Grean.AtomEventStore.UnitTests
 
         [Theory, AutoAtomData]
         public void ReverseYieldsCorrectEvents(
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory dummyInjectedIntoSut,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory dummyInjectedIntoSut,
             [Frozen]UuidIri dummyId,
             AtomEventObserver<XmlAttributedTestEventX> writer,
             LifoEvents<XmlAttributedTestEventX> sut,
@@ -148,9 +140,9 @@ namespace Grean.AtomEventStore.UnitTests
         public void EnumerationStartsFromMostRecentEventEvenIfLastLinkIsStale(
             int pageCount,
             int staleCount,
-            [Frozen(As = typeof(ITypeResolver))]TestEventTypeResolver dummyResolver,
-            [Frozen(As = typeof(IContentSerializer))]XmlContentSerializer dummySerializer,
-            [Frozen(As = typeof(IAtomEventStorage))]AtomEventsInMemory storage,
+            [Frozen(Matching.ImplementedInterfaces)]TestEventTypeResolver dummyResolver,
+            [Frozen(Matching.ImplementedInterfaces)]XmlContentSerializer dummySerializer,
+            [Frozen(Matching.ImplementedInterfaces)]AtomEventsInMemory storage,
             [Frozen]UuidIri id,
             LifoEvents<IXmlAttributedTestEvent> sut,
             AtomEventObserver<XmlAttributedTestEventX> writer,
